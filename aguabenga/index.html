@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÁguaBenga  - Seja Membro!</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" href="./img/favicon.png">
+  <meta name="author" content="Mohamad Tarik Suleman">
+  <meta name="description" content="Membros Limitados Para r=Reabastecimento - ÁguaBenga">
+  <meta name="copyright" content="©2025, Mohamad Tarik Suleman.">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NV25ZVPXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-2NV25ZVPXW');
+  </script>
+</head>
+<body>
+
+    <section class="hero" id="home">
+
+    <video autoplay muted loop id="background" poster="./img/bg.jpg">
+      <source src="./img/bg.mp4" type="video/mp4">
+    </video> 
+
+    <div class="content">
+
+        <div class="form">
+            <h1>Torne-se Membro e Economize!</h1>
+            <div class="border"></div>
+            <p>
+                Receba descontos exclusivos em cada reabastecimento!
+            </p>
+            <p><strong>Vagas limitadas!</strong> <br> Restam apenas <span id="membership-count">17</span> inscrições disponíveis.</p>
+            <div class="border"></div>
+            <form action="#" method="POST">
+                <label for="fullname">Nome Completo</label>
+                <input type="text" id="fullname" name="fullname" required />
+
+                <label for="address">Endereço</label>
+                <input type="text" id="address" name="address" required />
+
+                <label for="cellphone">Telemóvel / WhatsApp</label>
+                <input type="tel" id="cellphone" name="cellphone" placeholder="+258..." required />
+
+                <button type="submit">Enviar</button>
+            </form>
+            <div class="footer">
+            <a href="https://aguabenga.com/">www.aguabenga.com</a> 
+            <img src="./img/logo.png" alt="" width="80">
+            </div>
+        </div>
+
+    </div>
+
+  </section>
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const footer = document.querySelector("#footer");
+    const nav = document.querySelector("nav");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            nav.classList.add("scrolled");
+          } else {
+            nav.classList.remove("scrolled");
+          }
+        });
+      },
+      {
+        threshold: 0.9 // Trigger when 30% of the footer is visible
+      }
+    );
+
+    observer.observe(footer);
+  });
+</script>
+    
+
+</body>
+</html>
