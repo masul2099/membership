@@ -132,7 +132,7 @@ a:hover {
     padding: .6rem;
 }
 
-.form form button {
+button {
     background: var(--color1);
     margin: .6rem 0;
     text-transform: uppercase;
@@ -144,7 +144,7 @@ a:hover {
     border: none;
 }
 
-.form form button:hover {
+button:hover {
     cursor: pointer;
     background: #ffffff95;
     transition: .4s;
@@ -228,7 +228,7 @@ a:hover {
    align-self: center;
    background-color: var(--color3);  
    flex-shrink: 0;
-   max-height: 330px;
+   max-height: 340px;
    flex-basis: 600px;
    display: flex;
    flex-direction: column;
@@ -258,8 +258,11 @@ a:hover {
     justify-content: space-between;
 }
 
-.card .middle .sideA {
-
+.card .middle .sideA ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .card .middle .sideB {
@@ -282,6 +285,11 @@ a:hover {
 }
 
 /* RESPONSIVE */
+
+
+.pdf {
+    position: absolute;
+}
 
 @media (max-width: 600px) {
   .card {
