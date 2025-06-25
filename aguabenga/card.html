@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÁguaBenga  - Seja Membro!</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" href="./img/favicon.png">
+  <meta name="author" content="Mohamad Tarik Suleman">
+  <meta name="description" content="Membros Limitados Para r=Reabastecimento - ÁguaBenga">
+  <meta name="copyright" content="©2025, Mohamad Tarik Suleman.">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2NV25ZVPXW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-2NV25ZVPXW');
+  </script>
+</head>
+<body>
+
+    <section class="hero" id="home">
+
+    <video autoplay muted loop id="background" poster="./img/bg.jpg">
+      <source src="./img/bg.mp4" type="video/mp4">
+    </video> 
+
+    <div class="content">
+
+        <div class="card">
+
+          <div class="top">
+            <img src="./img/logo.png" alt="">
+            <p>Cartão de Membro Oficial</p>
+          </div>
+
+          <div class="middle">
+
+            <div class="sideA">
+            <ul>
+              <li>✔ Desconto exclusivo para membros ativos</li>
+              <li>✔ Recarregue seus garrafões a qualquer momento</li>
+              <li>✔ Economize e ajude o meio ambiente</li>
+              <li>✔ Válido apenas para uso pessoal</li>
+              <li>✔ Não é transferível</li>
+            </ul>
+            </div>
+
+            <div class="sideB">
+              <p><strong> Reabastecimento com Desconto</strong></p>
+              <p>Codigo n.º: <span class="member-number" id="code"></span></p>
+              <p>Nome: <span id="name"></span></p>
+              <p>Endereco: <span id="address"></span></p>
+              <p>Telefone / WhatsApp: <span id="phone"></span></p>
+              <p>Válido até: 31 / 12 / 2025</p>
+            </div>
+          </div>
+
+          <div class="bottom">
+            <p>Tete, Canongola, Em frente ao Colégio Mundial</p>
+            <p>www.aguabenga.com</p>
+            <p>87 294 5555 <br> info@aguabenga.com</p>
+            <p>Pureza, Confiança e Economia.</p>
+          </div>
+
+          
+
+        </div>
+ 
+
+    </div>
+
+
+
+  </section>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const code = params.get("code");
+
+if (!code) {
+  alert("Código não fornecido.");
+} else {
+  fetch(`https://script.google.com/macros/s/AKfycbzWq5ED7Dei8DpnQxYlKTEsYxP2MpNjnWoOPhLUyUjIH8y3bytOp0Fy3Aw6ualrKORa/exec?code=${code}`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        alert(data.error);
+      } else {
+        document.getElementById("name").textContent = data.name;
+        document.getElementById("phone").textContent = data.phone;
+        document.getElementById("address").textContent = data.address;
+        document.getElementById("code").textContent = data.code;
+      }
+    })
+    .catch(err => {
+      console.error("Erro ao buscar dados:", err);
+      alert("Erro ao carregar cartão.");
+    });
+}
+
+  function downloadCardAsPDF() {
+    const card = document.querySelector('.card');
+
+    const opt = {
+      margin:       0.5,
+      filename:     `${code}_aguabenga.pdf`,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(card).save();
+  }
+
+  </script>
+    
+
+</body>
+</html>

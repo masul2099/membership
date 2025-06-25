@@ -34,7 +34,7 @@
                 Receba descontos exclusivos em cada reabastecimento!
             </p>
             <div class="border"></div>
-              <form action="https://script.google.com/macros/s/AKfycbxiOJDUkUCACupswH3oInSkpuhULA1cpUKww6-gaijX0lXn_1-hPV2-V32UVMA3Qj6P/exec" method="POST">
+              <form id="memberForm">
                 <label for="fullname">Nome Completo</label>
                 <input type="text" id="fullname" name="fullname" required />
 
@@ -50,9 +50,24 @@
             <a href="https://aguabenga.com/">www.aguabenga.com</a> 
             <img src="./img/logo.png" alt="" width="80">
             </div>
-        </div>
+
+            <button id="myBtn">Open Modal</button>
+
+        </div>   
 
     </div>
+
+                  <!-- The Modal -->
+              <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <div class="info">
+                  <img src="https://img.icons8.com/?size=100&id=12226&format=png&color=000000" alt="" width="30">  
+                  <p id="message">Algum erro ao enviar o registro.</p>
+                  </div>  
+                </div>
+              </div>
 
   </section>
 
@@ -60,27 +75,56 @@
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const footer = document.querySelector("#footer");
-    const nav = document.querySelector("nav");
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            nav.classList.add("scrolled");
-          } else {
-            nav.classList.remove("scrolled");
-          }
-        });
-      },
-      {
-        threshold: 0.9 // Trigger when 30% of the footer is visible
+      // Get the modal
+  let modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  let btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  let span = document.getElementsByClassName("close")[0];
+
+  document.getElementById("memberForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    fetch("https://script.google.com/macros/s/AKfycbyBhW6E5KLUTZHJvrGSOTqQnMgVMPyMW53QaGXfwjSm-0qWczqJI3iZ1kVhiJQuCQOj/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+      if (/^\d{4}$/.test(result)) {
+      const url = `card.html?code=${encodeURIComponent(result)}`;
+      window.location.href = url;
+      } else {
+        document.getElementById("message").innerText = "Algum erro ao enviar o registro.";
+        modal.style.display = "block";
       }
-    );
-
-    observer.observe(footer);
+    })
+    .catch(() => {
+      document.getElementById("message").innerText = "Falha de conexão.";
+      modal.style.display = "block";
+    });
   });
+
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
 </script>
     
 
