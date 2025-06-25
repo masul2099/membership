@@ -225,11 +225,12 @@ button:hover {
 /* CARD */
 
 .card {
+   position: absolute;
    align-self: center;
    background-color: var(--color3);  
    flex-shrink: 0;
    max-height: 340px;
-   flex-basis: 600px;
+   min-width: 600px;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
