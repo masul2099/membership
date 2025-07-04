@@ -83,7 +83,7 @@ const code = params.get("code");
 if (!code) {
   alert("Código não fornecido.");
 } else {
-  fetch(`https://script.google.com/macros/s/AKfycbwc0kQG8L_OWH2_Tr_k-KQs2iw_aXLP9HPJ2YoYo0wc9IhOW4xTGsYWrNULT0lfdjHl/exec?code=${code}`)
+  fetch(`https://script.google.com/macros/s/AKfycbxkH2y7AblmQbpgyCg_xUvlFB3XoUKMGzXqEBqTjibHM9zVdkKZfUQvLbI3FXDPVKmt/exec?code=${code}`)
     .then(res => res.json())
     .then(data => {
       if (data.error) {
